@@ -2,7 +2,7 @@ name: RSS Feed Monitor
 
 on:
   schedule:
-    - cron: '*/45 * * * *'  # Run every 45 minutes
+    - cron: '*/45 * 0 * *'  # Run every 45 minutes
   workflow_dispatch:
 
 jobs:
