@@ -1,0 +1,25 @@
+name: RSS Feed Monitor
+
+on:
+  schedule:
+    - cron: '*/45 * * * *'  # Run every 45 minutes
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run RSS-checker
+        uses: robdel12/rss-checker@v1.0.0
+        with:
+          rss-feeds: |
+            https://seekwebserial.wordpress.com/feed/
+          commit-directory: .
+          commit-message: Custom commit message
+          debug: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
